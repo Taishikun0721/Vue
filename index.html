@@ -9,16 +9,21 @@
 </head>
 <body>
 	<div id="app">
-		<button v-on:click="show=!show">切り替え</button>
-		<transition>
-			<p v-if="show">Hello Vue.js!!!</p>
-		</transition>
+		<p>Hello {{ message.value }}</p>
+		<p>{{ message.value.length }}</p>
+		<p>{{ list[2] }}</p>
+		<p>{{ list[num] }}</p>
+		<p>{{ 1 + 1 }}</p>
 	</div>
 	<script>
 		var app = new Vue({
 			el: '#app',
 			data: {
-				show: true
+				message: {
+					value: 'Hello Vue.js!'
+				},
+				list: ['りんご', 'ばなな', 'イチゴ'],
+				num: 1
 			}
 		})
 	</script>
