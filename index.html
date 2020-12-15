@@ -42,6 +42,23 @@
 		<input type="range" min="0" max="100" v-model="radius">
 	</div>
 
+	<div id="app-6">
+		<div v-if="type === 'A'">
+			typeはA
+		</div>
+		<div v-else-if="type === 'B'">
+			typeはB
+		</div>
+		<div v-else>
+			全ての条件を満たさなかった。
+		</div>
+	</div>
+
+	<div id="app-7">
+		<li v-for="item in list" v-bind:key="item.id">
+			ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+		</li>
+	</div>
 	<script>
 		var app = new Vue({
 			el: '#app',
@@ -101,6 +118,24 @@
 			el: '#app-5',
 			data: {
 				radius: 50
+			}
+		})
+
+		var app6 = new Vue({
+			el: '#app-6',
+			data: {
+				type: 'A'
+			}
+		})
+
+		var app7 = new Vue({
+			el:'#app-7',
+			data: {
+				list: [
+					{ id: 1, name: 'スライム', hp: 200 },
+					{ id: 2, name: 'ゴブリン', hp: 500 },
+					{ id:3, name: 'ドラゴン', hp: 1000 }
+				]
 			}
 		})
 	</script>
