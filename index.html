@@ -18,7 +18,30 @@
 		<p v-if='seen'>Now you see me</p>
 		<p v-for='fruits in list'>{{ fruits }}</p>
 		<p>{{ Math.round(3.14) }}</p>
+		<div v-bind:scroll-top.prop="scroll"></div>
 	</div>
+	<div id="app-2">
+		<p>{{ count }}回クリックしたよ!!</p>
+		<button v-on:click="increment">カウントを増やす</button>
+	</div>
+
+	<div id="app-3">
+		<p v-bind:class="{ child: isChild, 'is-active': isActive }">Text</p>
+		<p v-bind:style="{ color: textColor, backgroundColor: bgColor }">Text</p>
+	</div>
+
+	<div id="app-4">
+		<p v-bind:class="classObject"></p>
+		<p v-bind:style="styleObject"></p>
+	</div>
+
+	<div id="app-5">
+		<svg xmins="http://www.w3.org/2000/svg" version="1.1">
+			<circle cx="100" cy="75" v-bind:r="radius" fill="lightpink" />
+		</svg>
+		<input type="range" min="0" max="100" v-model="radius">
+	</div>
+
 	<script>
 		var app = new Vue({
 			el: '#app',
@@ -29,7 +52,55 @@
 				list: ['りんご', 'ばなな', 'イチゴ'],
 				num: 1,
 				seen: true,
-				character: 'Vue.js'
+				character: 'Vue.js',
+				scroll: 0
+			},
+			mounted: function() {
+				this.scroll = 0;
+			}
+		})
+
+		var app2 = new Vue({
+			el: '#app-2',
+			data: {
+				count: 0
+			},
+			methods: {
+				increment: function() {
+					var vm = this
+					setTimeout(() => {this.count += 1}, 1000)
+				}
+			}
+		})
+
+		var app3 = new Vue({
+			el: '#app-3',
+			data: {
+				isChild: true,
+				isActive: true,
+				textColor: 'red',
+				bgColor: 'lightgray'
+			}
+		})
+
+		var app4 = new Vue({
+			el:'#app-4',
+			data: {
+				classObject: {
+					child: true,
+					'is-active': false
+				},
+				styleObject: {
+					color: 'red',
+					backgroundColor: 'lightgray'
+				}
+			}
+		})
+
+		var app5 = new Vue({
+			el: '#app-5',
+			data: {
+				radius: 50
 			}
 		})
 	</script>
