@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My first Vue app</title>
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+  <link rel="stylesheet" href="todo.css">
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="row">
+      <div class="col-4 offset-lg-4 mt-5">
+        <div v-for="(todo, index) in lists" :key="todo.id">
+          <div class="card mb-3" :class="{done: isDone(index)}">
+            <div class="card-body">
+              {{ todo.body }}
+            </div>
+            <div class="buttons d-flex">
+              <button @click="doneTodo(index) = !doneTodo(index)" class="btn btn-success">完了</button>
+              <button @click="deleteTodo(index)" class="btn btn-danger">削除</button>
+            </div>
+          </div>
+        </div>
+        <h4>{{ inputBody }}</h4>
+        <input v-model="inputBody" class="form-control" placeholder="コメントを入力してください">
+        <button @click="addTodo" class="btn btn-raised btn-primary mt-3">追加</button>
+      </div>
+      </div>
+    </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        inputBody: null,
+        lists: []
+      },
+      methods: {
+        addTodo: function() {
+          if (!this.inputBody) {
+			      alert('コメントを入力してください')
+			      return
+          }
+          this.lists.push({ body: this.inputBody, isDone: false})
+          this.inputBody = ""
+        },
+        deleteTodo: function(index) {
+          this.lists.splice(index, 1)
+        },
+        doneTodo: function(index) {
+          this.lists[index].isDone = true
+        },
+        isDone: function(index) {
+          return this.lists[index].isDone
+        }
+      }
+    })
+  </script>
+</body>
+</html>
