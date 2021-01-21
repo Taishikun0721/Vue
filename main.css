@@ -5,3 +5,7 @@
 .v-enter, .-leave-to {
 	opacity: 0;
 }
+
+.tuyoi {
+	background-color: aqua;
+}
