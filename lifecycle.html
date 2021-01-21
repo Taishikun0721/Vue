@@ -1,0 +1,72 @@
+<div id="app">
+	<p>
+	{{ message }}
+	</p>
+	<p>
+	{{ name }}
+	</p>
+	<p>
+	{{ myData }}
+	</p>
+	<button @click = 'ボタンが変更'>
+	変更
+	</button>
+</div>
+
+<div id="app2"></div>
+<div id="app3"></div>
+<div id="app4">
+	<h1>
+		こんにちは{{ name }}
+	</h1>
+	<button @click="name = '太郎さん'">
+		名前を変更
+	</button>
+	<button @click="destroy">
+		インスタンスを破壊
+	</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<script>
+var vm = new Vue({
+
+})
+
+var app4 = new Vue({
+	el: "#app4",
+	data: {
+		name: 'inokuchi'
+    },
+	beforeCreate: function() {
+		console.log('beforeCreate')
+	},
+    created: function() {
+		console.log('created')
+	},
+	beforeMount: function() {
+		console.log('beforeMount')
+	},
+	mounted: function() {
+	console.log('mounted')
+		},
+    beforeUpdate: function() {
+		console.log('beforeUpdate')
+	},
+	updated: function() {
+		console.log('updated')
+	},
+	beforeDestroy: function() {
+		console.log('beforeDestroy')
+	},
+	destroyed: function() {
+		console.log('destroyed')
+	},
+	methods: {
+		destroy: function() {
+			this.$destroy()
+		}
+	}
+})
+</script>
