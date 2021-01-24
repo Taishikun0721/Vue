@@ -43,7 +43,7 @@
 			computed: {
 				expendeBooks() {
 					return this.books.filter((b) => {
-						return b.price >= 2500;
+						return b.title.length == 16;
 					})
 				}
 			}
