@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+</head>
+</head>
+<body>
+	<div id="app">
+		<div class="container">
+			<table class="table">
+				<thead>
+					<th>ID</th><th>ISBN</th><th>書名</th><th>価格</th>
+				</thead>
+				<tbody>
+					<tr v-for="(b, i) in expendeBooks">
+						<td>{{ i + 1 }}</td>
+						<td>{{ b.isbn }}</td>
+						<td>{{ b.title }}</td>
+						<td>{{ b.price }}円</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				books: [{
+					isbn: '978-4-7981-5757-3',
+					title: 'Javascript逆引きレシピ',
+					price: 2000
+				},
+				{
+					isbn: '973-2323-8443-9',
+					title: '楽しく学ぶJquery',
+					price: 2800
+				}]
+			},
+			computed: {
+				expendeBooks() {
+					return this.books.filter((b) => {
+						return b.price >= 2500;
+					})
+				}
+			}
+		})
+	</script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+</body>
