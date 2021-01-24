@@ -1,159 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Vue.js App</title>
 	<link rel="stylesheet" href="main.css">
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
 </head>
 <body>
 	<div id="app">
-		<p>Hello {{ message.value }}</p>
-		<p>{{ message.value.length }}</p>
-		<p>{{ list[2] }}</p>
-		<p>{{ list[num] }}</p>
-		<p>{{ 1 + 1 }}</p>
-		<p>{{ message.value.length >= 10 ? '10文字以上' : '10文字未満' }}</p>
-		<p v-if='seen'>Now you see me</p>
-		<p v-for='fruits in list'>{{ fruits }}</p>
-		<p>{{ Math.round(3.14) }}</p>
-		<div v-bind:scroll-top.prop="scroll"></div>
-	</div>
-	<div id="app-2">
-		<p>{{ count }}回クリックしたよ!!</p>
-		<button v-on:click="increment">カウントを増やす</button>
-	</div>
-
-	<div id="app-3">
-		<p v-bind:class="{ child: isChild, 'is-active': isActive }">Text</p>
-		<p v-bind:style="{ color: textColor, backgroundColor: bgColor }">Text</p>
-	</div>
-
-	<div id="app-4">
-		<p v-bind:class="classObject"></p>
-		<p v-bind:style="styleObject"></p>
-	</div>
-
-	<div id="app-5">
-		<svg xmins="http://www.w3.org/2000/svg" version="1.1">
-			<circle cx="100" cy="75" v-bind:r="radius" fill="lightpink" />
-		</svg>
-		<input type="range" min="0" max="100" v-model="radius">
-	</div>
-
-	<div id="app-6">
-		<div v-if="type === 'A'">
-			typeはA
-		</div>
-		<div v-else-if="type === 'B'">
-			typeはB
-		</div>
-		<div v-else>
-			全ての条件を満たさなかった。
-		</div>
-	</div>
-
-	<div id="app-7">
-		<input v-model="name">
-		<button v-on:click="doAdd">モンスターを追加</button>
-		<li v-for="item in list"
-			v-bind:key="item.id"
-			v-bind:class="{ tuyoi: item.hp > 300 }"
-			v-if="item.hp > 300">
-			ID.{{ item.id }} {{ item.name }}  HP.{{ item.hp }}
-			<span v-if="item.hp > 300">強い！！</span>
-		</li>
+		<fieldset>
+			<legend>支払い方法</legend>
+				クレジットカード
+				<input type="radio" name="pay" value="credit" v-model="pay" />
+				銀行振り込み
+				<input type="radio" name="pay" value="bank" v-model="pay" />
+				手渡し
+				<input type="radio" name="pay" value="hand" v-model="pay" />
+				<hr/>
+				<div v-if="pay === 'credit'">
+					カード番号:
+					<input type="text" key="credit" />
+				</div>
+				<div v-else-if="pay==='bank'">
+					口座番号:
+					<input type="text" key="bank" />
+				</div>
+				<div v-else-if="pay='hand'">
+					手渡し:
+					<input type="text" key="hand">
+				</div>
+		</fieldset>
 	</div>
 	<script>
 		var app = new Vue({
 			el: '#app',
 			data: {
-				message: {
-					value: 'Hello Vue.js!'
-				},
-				list: ['りんご', 'ばなな', 'イチゴ'],
-				num: 1,
-				seen: true,
-				character: 'Vue.js',
-				scroll: 0
-			},
-			mounted: function() {
-				this.scroll = 0;
-			}
-		})
-
-		var app2 = new Vue({
-			el: '#app-2',
-			data: {
-				count: 0
-			},
-			methods: {
-				increment: function() {
-					var vm = this
-					setTimeout(() => {this.count += 1}, 1000)
-				}
-			}
-		})
-
-		var app3 = new Vue({
-			el: '#app-3',
-			data: {
-				isChild: true,
-				isActive: true,
-				textColor: 'red',
-				bgColor: 'lightgray'
-			}
-		})
-
-		var app4 = new Vue({
-			el:'#app-4',
-			data: {
-				classObject: {
-					child: true,
-					'is-active': false
-				},
-				styleObject: {
-					color: 'red',
-					backgroundColor: 'lightgray'
-				}
-			}
-		})
-
-		var app5 = new Vue({
-			el: '#app-5',
-			data: {
-				radius: 50
-			}
-		})
-
-		var app6 = new Vue({
-			el: '#app-6',
-			data: {
-				type: 'A'
-			}
-		})
-
-		var app7 = new Vue({
-			el:'#app-7',
-			data: {
-				list: [
-					{ id: 1, name: 'スライム', hp: 200 },
-					{ id: 2, name: 'ゴブリン', hp: 500 },
-					{ id:3, name: 'ドラゴン', hp: 1000 }
-				]
-			},
-			methods: {
-				doAdd: function() {
-					var max = this.list.reduce(function(a, b) {
-						return a > b.id ? a : b.id
-					}, 0)
-					this.list.push({
-						id: max + 1,
-						name: this.name,
-						hp: 500
-					})
-				}
+				pay: 'credit'
 			}
 		})
 	</script>
