@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="../main.css">
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
 	<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
@@ -9,20 +9,20 @@
 </head>
 <body>
 	<div id="app">
-		<my-hello your_name="鈴木"></my-hello>
+		<my-input @focus.native="onFoucus"></my-input>
 	</div>
 	<script>
-		Vue.component('my-hello', {
-			props: {
-				your_name: {
-				type: String,
-				default: 'No Nameさん'
-				}
-			},
-			template: '<div>こんにちは、{{ your_name }}さん!</div>'
+		Vue.component('my-input', {
+			props: ['first_name'],
+			template: '<input type="text" />'
 		})
 		var app = new Vue({
-			el: '#app'
+			el: '#app',
+			methods: {
+				onFoucus(e) {
+					console.log(e);
+				}
+			}
 		})
 	</script>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
