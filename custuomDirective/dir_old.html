@@ -20,11 +20,13 @@
 	</div>
 	<script>
 		Vue.directive('highlight', {
-			bind(el, binding) {
+			bind(el, binding, vnode, oldVnode) {
+				if (binding.value === binding.oldValue) { return;}
 				console.log(binding.value)
 				el.style.backgroundColor = binding.value;
 			},
-			update(el, binding) {
+			update(el, binding, vnode, oldVnode) {
+				if (binding.value === binding.oldValue) { return;}
 				console.log(binding.value)
 				el.style.backgroundColor = binding.value;
 			}
