@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/profile">Profile</router-link>
+      <router-link to="/article/100">記事: No.100</router-link>
     </div>
     <router-view/>
   </div>
