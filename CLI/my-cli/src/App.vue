@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
+      <router-link to="/about" event="mouseover">About</router-link> |
       <router-link to="/profile">Profile</router-link>
       <router-link to="/article/100">記事: No.100</router-link>
       <router-link to="/article/13">記事: No.13</router-link>
@@ -31,5 +31,10 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.current {
+  color: red;
+  font-weight: bold;
 }
 </style>
