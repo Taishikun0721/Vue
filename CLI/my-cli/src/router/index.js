@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Article from '../views/Article.vue'
 import Page from '../views/Page.vue'
+import Typing from '../views/Typing.vue'
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,11 @@ const routes = [
         props: true
       }
     ]
+  },
+  {
+    path: '/typing',
+    name: 'Typing',
+    component: Typing
   }
 ]
 
