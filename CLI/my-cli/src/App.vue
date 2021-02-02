@@ -1,40 +1,22 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about" event="mouseover">About</router-link> |
-      <router-link to="/profile" event="mouseover">Profile</router-link> |
-      <router-link to="/article/100">記事: No.100</router-link> |
-      <router-link to="/article/13">記事: No.13</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <Header></Header>
+    <v-main>
+      <v-container>
+        <router-view></router-view>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-
-.current {
-  color: red;
-  font-weight: bold;
-}
-</style>
+<script>
+import Header from './components/Header/Header.vue'
+export default {
+  name: 'App',
+  data: () => ({
+  }),
+  components: {
+    Header
+  }
+};
+</script>
